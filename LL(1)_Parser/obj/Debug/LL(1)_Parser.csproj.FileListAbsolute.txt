@@ -1,0 +1,6 @@
+c:\users\peyman!\documents\visual studio 2015\Projects\LL(1)_Parser\LL(1)_Parser\bin\Debug\LL(1)_Parser.exe.config
+c:\users\peyman!\documents\visual studio 2015\Projects\LL(1)_Parser\LL(1)_Parser\bin\Debug\LL(1)_Parser.exe
+c:\users\peyman!\documents\visual studio 2015\Projects\LL(1)_Parser\LL(1)_Parser\bin\Debug\LL(1)_Parser.pdb
+c:\users\peyman!\documents\visual studio 2015\Projects\LL(1)_Parser\LL(1)_Parser\obj\Debug\LL(1)_Parser.csprojResolveAssemblyReference.cache
+c:\users\peyman!\documents\visual studio 2015\Projects\LL(1)_Parser\LL(1)_Parser\obj\Debug\LL(1)_Parser.exe
+c:\users\peyman!\documents\visual studio 2015\Projects\LL(1)_Parser\LL(1)_Parser\obj\Debug\LL(1)_Parser.pdb
