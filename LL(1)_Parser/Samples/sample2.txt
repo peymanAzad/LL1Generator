@@ -1,0 +1,10 @@
+alphabet a,b,c,d
+state S -start
+state A
+state B
+vector S aA
+vector S bB
+vector A aA
+vector A c
+vector B bB
+vector B d
