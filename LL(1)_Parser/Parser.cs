@@ -86,5 +86,28 @@ namespace LL_1__Parser
 
             return true;
         }
+
+        public string PirntLL1Table()
+        {
+            var result = string.Empty;
+
+            foreach (var col in Ll1Table.First().Value.Keys)
+            {
+                result += "\t" + col;
+            }
+            result += "\n";
+
+            foreach (var row in Ll1Table)
+            {
+                result += row.Key + "\t";
+                foreach (var col in row.Value)
+                {
+                    result += string.Concat(col.Value.Select(s => s.Name)) + "\t";
+                }
+                result += "\n";
+            }
+
+            return result;
+        }
     }
 }

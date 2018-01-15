@@ -81,6 +81,8 @@ namespace LL_1__Parser
 
             parser.GenerateLL1Table();
 
+            Console.WriteLine(parser.PirntLL1Table());
+
             Console.ReadKey();
         }
     }
