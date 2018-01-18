@@ -44,7 +44,7 @@ namespace LL_1__Parser
                             {
                                 if (row[follow.Name].Count > 0)
                                 {
-                                    throw new Exception("the grammer is not LL(1)!");
+                                    throw new NotLL1Exception();
                                 }
                                 row[follow.Name].AddRange(sentence.Right);
                             }
@@ -53,7 +53,7 @@ namespace LL_1__Parser
                         {
                             if (row[state.Name].Count > 0)
                             {
-                                throw new Exception("the grammer is not LL(1)!");
+                                throw new NotLL1Exception();
                             }
                             row[state.Name].AddRange(sentence.Right);
                         }
@@ -67,7 +67,7 @@ namespace LL_1__Parser
                         {
                             if (row[first.Name].Count > 0)
                             {
-                                throw new Exception("the grammer is not LL(1)!");
+                                throw new NotLL1Exception();
                             }
                             row[first.Name].AddRange(sentence.Right);
                         }
@@ -89,25 +89,41 @@ namespace LL_1__Parser
 
         public string PirntLL1Table()
         {
-            var result = string.Empty;
+            var result = "<table style=\"border: 1px solid black;border-collapse: collapse;\"><thead><tr><th></th>";
 
             foreach (var col in Ll1Table.First().Value.Keys)
             {
-                result += "\t" + col;
+                result += "<th style=\"border: 1px solid black;\">" + col + "</th>";
             }
-            result += "\n";
+            result += "</tr></thead><tbody>";
 
             foreach (var row in Ll1Table)
             {
-                result += row.Key + "\t";
+                result += "<tr><th style=\"border: 1px solid black;\">" + row.Key + "</th>";
                 foreach (var col in row.Value)
                 {
-                    result += string.Concat(col.Value.Select(s => s.Name)) + "\t";
+                    result += "<td style=\"border: 1px solid black;\">" + string.Concat(col.Value.Select(s => s.Name)) + "</td>";
                 }
-                result += "\n";
+                result += "</tr>";
             }
+
+            result += "</tbody></table>";
 
             return result;
         }
+
+        public bool CheckLL1()
+        {
+            var states = Grammer.Sentences.Select(s => s.Left).Distinct();
+            if(states.GroupBy(g => g.Name).Any(t => t.Count() > 1))
+            {
+                return false;
+            }
+            return true;
+        }
+    }
+
+    class NotLL1Exception : Exception
+    {
     }
 }

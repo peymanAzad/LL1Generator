@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,9 +24,9 @@ namespace LL_1__Parser
                 path = Console.ReadLine();
             }
 
-            string input;
-            Console.WriteLine("Enter String To Parse");
-            input = Console.ReadLine();
+            //var end = path.LastIndexOf("\\");
+            var root = Path.GetDirectoryName(path);
+            var name = Path.GetFileNameWithoutExtension(path);
 
             var Alphabet = new List<TerminalState>();
             var States = new List<NonTerminalState>();
@@ -79,11 +80,21 @@ namespace LL_1__Parser
             
             var parser = new Parser(Alphabet.Except(new List<TerminalState>() { TerminalState.Lambda }).Select(t => t.Name).ToList(), States.Select(t => t.Name).ToList(), Vectors);
 
-            parser.GenerateLL1Table();
+            try
+            {
+                parser.GenerateLL1Table();
 
-            Console.WriteLine(parser.PirntLL1Table());
+                var result = parser.PirntLL1Table();
 
-            Console.ReadKey();
+                var dest = root + "\\" + name + ".html";
+                File.WriteAllText(dest, result);
+
+                Console.WriteLine("done!");
+            }
+            catch (NotLL1Exception)
+            {
+                Console.WriteLine("The Grammer Is Not LL1!");
+            }
         }
     }
 }
